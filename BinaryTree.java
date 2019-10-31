@@ -1,3 +1,6 @@
+import java.util.LinkedList;
+import java.util.Queue;
+
 /**
  * @ClassName BinaryTree
  * @Desc TODO
@@ -44,6 +47,30 @@ public class BinaryTree {
         postOrderTraversal(root.left);
         postOrderTraversal(root.right);
         System.out.println(root);
+    }
+    //层序遍历
+    //完全二叉树的判断
+    public static boolean comBinaryTree(Node root){
+        if(root==null){
+            return true;
+        }
+        Queue<Node> queue=new LinkedList<>();
+        queue.offer(root);
+        while(!queue.isEmpty()){
+            Node front=queue.poll();
+            if(front==null){
+                break;
+            }
+            queue.offer(front.left);
+            queue.offer(front.right);
+        }
+        while(!queue.isEmpty()){
+            Node n=queue.poll();
+            if(n!=null){
+                return false;
+            }
+        }
+        return true;
     }
     //遍历思路求结点的个数
     static int size=0;
